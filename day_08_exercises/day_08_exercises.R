@@ -47,4 +47,4 @@ covid_plot <- ggplot(covid_long, aes(x = date, y = Value, color = `Type Sum`)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.title = element_text(size = 14, face = "bold"), plot.subtitle = element_text(size = 10))
 
-ggsave("images/covid_plot.png", plot = covid_plot, width = 10, height = 10, units = "in", dpi = 300)
+ggsave("images/covid_plot.png", plot = covid_plot, width = 10, height = 10, units = "in", dpi = 300, bg = "white")
