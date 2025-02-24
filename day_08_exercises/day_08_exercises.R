@@ -5,7 +5,7 @@
 library(tidyverse)
 library(scales)
 
-#REad in the COVID-19 data
+#Read in the COVID-19 data
 covid_raw <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
 
 #Create new data.frame using the available state.abb, state.name, state.region objects in base R. Be intentional about creating a primary key to match to the COVID data
@@ -32,6 +32,7 @@ covid_long <- covid_cumulative %>%
     names_to = "Type Sum",
     values_to = "Value")
 
+
 covid_long <- covid_long %>% drop_na(region)
 
 
@@ -45,5 +46,3 @@ ggplot(covid_long, aes(x = date, y = Value, color = `Type Sum`)) +
   labs(title = "Cumulative Cases and Deaths by US Region", subtitle = "COVID-19 Data - ESS 330", x = "Date", y = "Daily Cumulative Values", color = "Type") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.title = element_text(size = 14, face = "bold"), plot.subtitle = element_text(size = 10))
-
-
