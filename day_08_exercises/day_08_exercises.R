@@ -38,7 +38,7 @@ covid_long <- covid_long %>% drop_na(region)
 
 #plot data in a compelling way (setup, layers, labels, facets, themes)
 #faceted plot
-ggplot(covid_long, aes(x = date, y = Value, color = `Type Sum`)) +
+covid_plot <- ggplot(covid_long, aes(x = date, y = Value, color = `Type Sum`)) +
   geom_line() +
   facet_grid(`Type Sum` ~ region, scales = "free_y") +
   scale_x_date(limits = as.Date(c("2020-03-01", "2020-08-31")), date_breaks = "1 month", date_labels = "%b") +
@@ -46,3 +46,5 @@ ggplot(covid_long, aes(x = date, y = Value, color = `Type Sum`)) +
   labs(title = "Cumulative Cases and Deaths by US Region", subtitle = "COVID-19 Data - ESS 330", x = "Date", y = "Daily Cumulative Values", color = "Type") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.title = element_text(size = 14, face = "bold"), plot.subtitle = element_text(size = 10))
+
+ggsave("images/covid_plot.png", plot = covid_plot, width = 10, height = 10, units = "in", dpi = 300)
